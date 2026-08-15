@@ -11,33 +11,26 @@
 ## 项目架构
 
 ```mermaid
-mindmap
-  root((Finance SFT Qwen))
-    Data
-      BAAI Finance-Economics
-      Filter & Dedup
-      Alpaca Format
-      train/dev/eval
-    Training
-      Qwen3-4B-Instruct
-      QLoRA 4-bit
-      Trainer + SFTDataCollator
-      Checkpoint
-    Evaluation
-      Base vs SFT
-      ROUGE-L
-      BLEU
-      Reference Hit
-      Batch + 4 Workers
-    Deployment
-      predict.py
-      FastAPI
-      Chat Page
-      SSH Tunnel
-    Docs
-      README
-      PROJECT_ARCHITECTURE
-      PROBLEMS
+flowchart LR
+  A[Raw Data<br/>BAAI Finance-Economics] --> B[Filter & Dedup<br/>deita_score >= 6]
+  B --> C[Format<br/>Alpaca JSONL]
+  C --> D[train 30000 / dev 2000 / eval 2000]
+
+  D --> E[Qwen3-4B-Instruct-2507]
+  E --> F[QLoRA SFT<br/>Trainer + SFTDataCollator]
+  F --> G[Adapter<br/>outputs/checkpoints/final]
+
+  D --> H[Eval Set<br/>2000 Questions]
+  H --> I[Base Model]
+  H --> J[SFT Model<br/>Base + Adapter]
+  I --> K[base_predictions.jsonl]
+  J --> L[sft_predictions.jsonl]
+  K --> M[ROUGE-L / BLEU<br/>Reference Hit]
+  L --> M
+  M --> N[Eval Report]
+
+  G --> O[FastAPI App<br/>Chat Page]
+  N --> O
 ```
 
 ## 技术栈
