@@ -12,25 +12,27 @@
 
 ```mermaid
 flowchart LR
-  A[Raw Data<br/>BAAI Finance-Economics] --> B[Filter & Dedup<br/>deita_score >= 6]
-  B --> C[Format<br/>Alpaca JSONL]
-  C --> D[train 30000 / dev 2000 / eval 2000]
+  A[原始数据<br/>BAAI 金融指令数据] --> B[过滤与去重<br/>deita_score >= 6]
+  B --> C[格式转换<br/>Alpaca JSONL]
+  C --> D[数据切分<br/>train 30000 / dev 2000 / eval 2000]
 
-  D --> E[Qwen3-4B-Instruct-2507]
-  E --> F[QLoRA SFT<br/>Trainer + SFTDataCollator]
-  F --> G[Adapter<br/>outputs/checkpoints/final]
+  D --> E[基础模型<br/>Qwen3-4B-Instruct-2507]
+  E --> F[QLoRA SFT 微调<br/>Trainer + SFTDataCollator]
+  F --> G[微调权重<br/>Adapter checkpoint]
 
-  D --> H[Eval Set<br/>2000 Questions]
-  H --> I[Base Model]
-  H --> J[SFT Model<br/>Base + Adapter]
-  I --> K[base_predictions.jsonl]
-  J --> L[sft_predictions.jsonl]
-  K --> M[ROUGE-L / BLEU<br/>Reference Hit]
+  D --> H[评测集<br/>2000 个问题]
+  H --> I[Base 模型生成]
+  H --> J[SFT 模型生成<br/>基础模型 + Adapter]
+  I --> K[base 预测结果]
+  J --> L[sft 预测结果]
+  K --> M[指标对比<br/>ROUGE-L / BLEU / Reference Hit]
   L --> M
-  M --> N[Eval Report]
+  M --> N[量化评测报告]
 
-  G --> O[FastAPI App<br/>Chat Page]
+  G --> O[FastAPI 部署<br/>网页对话]
   N --> O
+
+  classDef default fill:#ffffff,stroke:#2563eb,stroke-width:2px,color:#1f2933;
 ```
 
 ## 技术栈
