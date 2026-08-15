@@ -30,6 +30,8 @@
 - 训练：30,000 条，1 epoch，约 1,875 步
 - 最终训练 loss：约 1.08
 
+![Training Loss](outputs/reports/training_loss.svg)
+
 ## 评测结果
 
 在 2,000 条金融问答评测集上，base vs SFT：
