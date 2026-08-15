@@ -1,0 +1,15 @@
+# Training environment requirements. Install on AutoDL, not on the local PyCharm env.
+torch>=2.4
+transformers>=4.46
+datasets>=3.0
+accelerate>=0.34
+peft>=0.13
+bitsandbytes>=0.44
+pyyaml
+sentencepiece
+protobuf
+einops
+rouge-score
+fastapi
+uvicorn
+pydantic

@@ -1,0 +1,17 @@
+torch>=2.4
+transformers>=4.46
+datasets>=3.0
+accelerate>=0.34
+peft>=0.13
+trl>=0.10
+bitsandbytes>=0.44
+sentencepiece
+protobuf
+einops
+rouge-score
+fastapi
+uvicorn
+pydantic
+# Local project requirements.
+# prepare_data.py only uses Python standard library, so this can stay intentionally light.
+# Training dependencies are in requirements-train.txt and should be installed on AutoDL.

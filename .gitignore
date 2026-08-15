@@ -1,0 +1,8 @@
+data/raw/*
+!data/raw/.gitkeep
+outputs/checkpoints/*
+outputs/predictions/*
+outputs/logs/*
+__pycache__/
+*.pyc
+.idea/
