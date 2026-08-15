@@ -8,6 +8,38 @@
 - 在 2000 条未见过的金融评测问题上对比 base 与 SFT 的生成质量。
 - 产出可复现的数据准备、训练、评测、推理代码。
 
+## 项目架构
+
+```mermaid
+mindmap
+  root((Finance SFT Qwen))
+    Data
+      BAAI Finance-Economics
+      Filter & Dedup
+      Alpaca Format
+      train/dev/eval
+    Training
+      Qwen3-4B-Instruct
+      QLoRA 4-bit
+      Trainer + SFTDataCollator
+      Checkpoint
+    Evaluation
+      Base vs SFT
+      ROUGE-L
+      BLEU
+      Reference Hit
+      Batch + 4 Workers
+    Deployment
+      predict.py
+      FastAPI
+      Chat Page
+      SSH Tunnel
+    Docs
+      README
+      PROJECT_ARCHITECTURE
+      PROBLEMS
+```
+
 ## 技术栈
 
 - Python / PyTorch / Hugging Face Transformers
