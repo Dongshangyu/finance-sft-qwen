@@ -1,0 +1,10 @@
+model_name_or_path: Qwen/Qwen3-4B-Instruct-2507
+adapter_path: outputs/checkpoints/final
+eval_file: data/processed/eval.jsonl
+max_new_tokens: 512
+temperature: 0.2
+top_p: 0.9
+num_samples: 2000
+batch_size: 8
+output_dir: outputs/predictions
+report_path: outputs/reports/eval_report.md
